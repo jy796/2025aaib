@@ -1,0 +1,31 @@
+// week15_3_zongzi_PImage_part2
+// 記得，圖檔要再拉進來一次
+PImage zongzi;
+void setup(){
+   size(600,400);
+   zongzi = loadImage("zongzi.png");
+   imageMode(CENTER); // 畫圖時，用政中心座標
+}
+float [] x = new float[100];
+float [] y = new float[100];
+int N = 0;
+void draw(){
+ background(#C0ffee);
+ for(int i=0; i<N; i++){
+    image(zongzi, x[i], y[i], 60, 50);
+    y[i]++;
+    if(y[i]>400){
+      for(int k=i; k<N-1; k++){
+        x[k] = x[k+1];
+        y[k] = y[k+1];
+     } 
+     N--;
+   }
+ }
+ println(N);
+}
+void mousePressed(){
+ x[N] = mouseX;
+ y[N] = mouseY;
+ N++;
+}
